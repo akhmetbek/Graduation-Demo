@@ -34,27 +34,8 @@ public class Common {
         speakers = new LinkedList<Speaker>();
         students = new LinkedList<Student>();
         assessments = new LinkedList<Assesment>();
-
         windowHeight = 800;
         windowWidth = 1200;
-        BufferedImage image = null;
-
-        try {
-            academicians.add(new Academician("Selim Temizer", ImageIO.read(new File("src/SelimTemizer.gif")), this));
-            academicians.add(new Academician("Hand De Nivelle", ImageIO.read(new File("src/HansDeNivelle.gif")), this));
-            academicians.add(new Academician("Shigeo Katsu", ImageIO.read(new File("src/ShigeoKatsu.gif")), this));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-        students.add(new Student("Kassym Akhmetbek", this));
-        students.add(new Student("Yernur Bayakhmetov", this));
-        students.add(new Student("Alena Sorokina", this));
-        students.add(new Student("Diana Shakenova", this));
-        students.add(new Student("Akylbek Stybaldy", this));
-        students.add(new Student("Adil Bulatov", this));
-
     }
 
     public static Common getInstance(){

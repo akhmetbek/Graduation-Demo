@@ -11,10 +11,10 @@ import java.awt.*;
 public class Student extends Entity {
     public boolean finished = false;
     public int grade = 0;
-    boolean hasTarget = false;
-    Vector2D desired = new Vector2D(850, 485);
-    public Student(String name, Common common){
-        this.common = common;
+    private boolean hasTarget = false;
+    private Vector2D desired = new Vector2D(850, 485);
+    public Student(String name){
+        this.common = Common.getInstance();
         this.name  =  name;
         state = new Rest();
         position = new Vector2D(common.randomInt(50, 1190), common.randomInt(50, 580));

@@ -5,14 +5,15 @@ import model.Vector2D;
 import view.Common;
 
 public class LabFactory extends AssesmentFactory {
-    Assesment lab;
-    public LabFactory(Common common){
-        this.common = common;
+
+    private Common common;
+    public LabFactory(){
+        this.common = Common.getInstance();
     }
 
     @Override
     public Assesment createAssesment(Vector2D position){
-        lab = new Lab();
+        Assesment lab = new Lab();
         lab.position = position;
         lab.state = new State();
         lab.points = common.randomInt(2, 4);

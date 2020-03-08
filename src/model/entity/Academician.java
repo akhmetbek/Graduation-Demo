@@ -3,25 +3,29 @@ package model.entity;
 import model.State.Rest;
 import model.State.State;
 import model.Vector2D;
-import model.assesment.Assesment;
-import model.assesment.AssesmentFactory;
+import model.assesment.*;
 import view.Common;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Academician extends Entity {
-    private AssesmentFactory assesmentFactory;
+    private AssesmentFactory[] assesmentFactory;
     private BufferedImage image;
+    public Common common;
 
-    public Academician(String name, BufferedImage image, Common common){
+    public Academician(String name, BufferedImage image){
         this.image = image;
         this.name  =  name;
-        this.common = common;
-        assesmentFactory = new AssesmentFactory(common);
+        common = Common.getInstance();
         state = new Rest();
         this.state.isVisible = true;
         position = new Vector2D(common.randomInt(20, 1180), common.randomInt(20, 580));
+
+        assesmentFactory = new AssesmentFactory[]{new HomeworkFactory(), new QuizFactory(), new LabFactory()};
+
     }
 
 
@@ -50,9 +54,8 @@ public class Academician extends Entity {
 
 
     public Assesment createAssesment(){
+        int r = common.randomInt(0, 2);
         Vector2D pos = new Vector2D(common.randomInt(-50, 50), common.randomInt(-50, 50));
-        Assesment assesment = assesmentFactory.createAssesment(position.plus(pos));
-
-        return assesment;
+        return assesmentFactory[r].createAssesment(position.plus(pos));
     }
 }

@@ -20,6 +20,21 @@ public class NURunner {
         Display display = new Display();
         Common common = Common.getInstance();
 
+
+        common.students.add(new Student("Kassym Akhmetbek"));
+        common.students.add(new Student("Yernur Bayakhmetov"));
+        common.students.add(new Student("Alena Sorokina"));
+        common.students.add(new Student("Diana Shakenova"));
+        common.students.add(new Student("Akylbek Stybaldy"));
+        common.students.add(new Student("Adil Bulatov"));
+
+        try {
+            common.academicians.add(new Academician("Selim Temizer", ImageIO.read(new File("src/SelimTemizer.gif"))));
+            common.academicians.add(new Academician("Hand De Nivelle", ImageIO.read(new File("src/HansDeNivelle.gif"))));
+            common.academicians.add(new Academician("Shigeo Katsu", ImageIO.read(new File("src/ShigeoKatsu.gif"))));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         System.out.println(common.students.toString());
 
         JFrame window = new JFrame();
@@ -32,25 +47,25 @@ public class NURunner {
         window.setVisible(true);
         window.pack();
         Graphics2D g2d = (Graphics2D) display.getGraphics();
+
         int i = 0;
         while(true){
 
-            common.stepAllEntities();
-            common.drawAllEntities(g2d);
-            if(i == 4){
-                display.repaint();
-                i = 0;
-                finished = common.students.stream().allMatch(s -> s.finished);
-            }
+
+            display.repaint();
+
+            finished = common.students.stream().allMatch(s -> s.finished);
+
             if(finished){
                 display.repaint();
                 break;
             }
+            common.stepAllEntities();
 
             i++;
 
             try {
-                Thread.sleep(5);
+                Thread.sleep(1);
             } catch (InterruptedException e) {
                 System.out.println("Woops, an error stopping after stepAllentities");
                 continue;

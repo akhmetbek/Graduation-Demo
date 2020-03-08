@@ -36,6 +36,7 @@ public class Display extends JPanel {
         super.paintComponent(g);
         Graphics2D graphics2D = (Graphics2D) g;
         graphics2D.drawImage(image, 0, 0, 1200, 600, null);
+        common.drawAllEntities(graphics2D);
     }
 
 }
